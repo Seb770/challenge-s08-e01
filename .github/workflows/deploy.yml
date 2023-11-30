@@ -1,4 +1,4 @@
-name: Déploiement d'Apache sur LXC
+name: Deploiement d'Apache sur LXC
 
 on:
   push:
