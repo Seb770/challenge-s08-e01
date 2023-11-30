@@ -2,8 +2,7 @@ name: Deploiement d'Apache sur LXC
 
 on:
   push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -13,10 +12,7 @@ jobs:
     - name: Checkout du code
       uses: actions/checkout@v4
 
-    - name: Configurer SSH
-      uses: webfactory/ssh-agent@v0.5.4
-      with:
-        ssh-private-key: ${{ secrets.YOUR_PRIVATE_KEY }}
-
     - name: Déployer avec Ansible
-      run: ansible-playbook -i "serveur-web," recette.yml
+      run: |
+        cd ansible
+        ansible-playbook -i etc/hosts -u root playbooks/recette.yml -v
