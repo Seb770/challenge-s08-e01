@@ -1,0 +1,22 @@
+name: Déploiement Apache sur LXC
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout du code
+      uses: actions/checkout@v4
+
+    - name: Configurer SSH
+      uses: webfactory/ssh-agent@v0.5.4
+      with:
+        ssh-private-key: ${{ secrets.YOUR_PRIVATE_KEY }}
+
+    - name: Déployer avec Ansible
+      run: ansible-playbook -i "serveur-web," recette.yml

@@ -1,0 +1,19 @@
+---
+- name: Déploiement Apache sur le serveur web LXC
+  hosts: serveur-web
+  become: true
+  tasks:
+    - name: Installer Apache
+      apt:
+        name: apache2
+        state: present
+
+    - name: Copier le fichier index.html
+      copy:
+        src: /home/student/page/index.html
+        dest: /var/www/html/index.html
+
+    - name: Redémarrer Apache
+      service:
+        name: apache2
+        state: restarted

@@ -1,0 +1,2 @@
+ansible-test ansible_host=10.51.28.50
+serveur-web ansible_host=10.51.28.198
